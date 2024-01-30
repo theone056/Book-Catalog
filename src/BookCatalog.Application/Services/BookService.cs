@@ -20,9 +20,16 @@ namespace BookCatalog.Application.Services
             _bookRepository = bookRepository;
             _mapper = mapper;
         }
-        public void Create(Book book)
+        public void Create(CreateBookModel book)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var model = _mapper.Map<Book>(book);
+                _bookRepository.Create(model, book.SelectedCategories);
+            }
+            catch(Exception ex) { 
+                throw new Exception(ex.Message);
+            }
         }
 
         public void Delete(int id)

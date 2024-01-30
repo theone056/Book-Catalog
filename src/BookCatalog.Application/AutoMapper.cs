@@ -18,6 +18,13 @@ namespace BookCatalog.Application
                 .ForMember(dest => dest.Description, src => src.MapFrom(x=> x.Description))
                 .ForMember(dest => dest.PublishDate, src => src.MapFrom(x=>x.PublishDate))
                 .ForMember(dest => dest.Categories, src => src.MapFrom(x => x.BookCategories.Select(x=> new CategoryResult() { CategoryId = x.Category.Id, Name = x.Category.Name }).ToList()));
+
+            CreateMap<Book, CreateBookModel>()
+                .ForMember(dest => dest.Title, src => src.MapFrom(x=>x.Title))
+                .ForMember(dest => dest.Description, src => src.MapFrom(x => x.Description))
+                .ForMember(dest => dest.PublishDate, src => src.MapFrom(x => x.PublishDate))
+                .ReverseMap();
+        
         }
     }
 }

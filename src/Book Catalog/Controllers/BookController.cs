@@ -1,4 +1,5 @@
-﻿using BookCatalog.Application.Services.Interface;
+﻿using BookCatalog.Application.Models;
+using BookCatalog.Application.Services.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -16,6 +17,8 @@ namespace Book_Catalog.Controllers
         }
 
         [HttpGet("GetAllBook")]
+        [ProducesResponseType(typeof(List<BookModelResult>), 200)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetAllBook()
         {
             var result = await _bookService.GetAllBook();
@@ -30,6 +33,8 @@ namespace Book_Catalog.Controllers
         }
 
         [HttpGet("GetBook")]
+        [ProducesResponseType(typeof(BookModelResult), 200)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetBook(int Id)
         {
             var result = await _bookService.GetBook(Id);
@@ -40,6 +45,23 @@ namespace Book_Catalog.Controllers
             else
             {
                 return NotFound();
+            }
+        }
+
+        [HttpPost]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult Create(CreateBookModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _bookService.Create(model);
+
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
             }
         }
     }

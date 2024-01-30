@@ -12,7 +12,7 @@ namespace BookCatalog.Application.Services.Interface
     {
         Task<List<BookModelResult>> GetAllBook();
         Task<BookModelResult> GetBook(int id);
-        void Create(Book book); 
+        void Create(CreateBookModel book); 
         void Update(Book book);
         void Delete(int id);
     }
