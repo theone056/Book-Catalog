@@ -21,42 +21,91 @@ namespace BookCatalog.Infrastructure.Repository
 
         public void Create(Book book, List<int> SelectedCategories)
         {
-            _dbContext.Books.Add(book);
+            try
+            {
+                _dbContext.Books.Add(book);
 
-            foreach (int category in SelectedCategories) {
-                _dbContext.BookCategories.Add(new BookCategory()
+                foreach (int category in SelectedCategories)
                 {
-                    Book = book,
-                    CategoryId = category
-                });
-                _dbContext.SaveChanges();
+                    _dbContext.BookCategories.Add(new BookCategory()
+                    {
+                        Book = book,
+                        CategoryId = category
+                    });
+                    _dbContext.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message,ex);
             }
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var books = _dbContext.Books.Where(x=>x.Id == id).ToList();
+            var bookCategory = _dbContext.BookCategories.Where(x=>x.BookId == id).ToList();
+            _dbContext.RemoveRange(books);
+            _dbContext.RemoveRange(bookCategory);
+            _dbContext.SaveChanges(true);
         }
 
         public async Task<List<Book>> GetAllBook()
         {
-            return await _dbContext.Books
-                                   .Include(x=>x.BookCategories)
-                                   .ThenInclude(x=>x.Category)
-                                   .ToListAsync();
+            try
+            {
+                return await _dbContext.Books
+                        .Include(x => x.BookCategories)
+                        .ThenInclude(x => x.Category)
+                        .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
         }
 
         public async Task<Book> GetBook(int id)
         {
-            return await _dbContext.Books
-                                   .Include(x => x.BookCategories)
-                                   .ThenInclude(x => x.Category)
-                                   .FirstOrDefaultAsync(x=>x.Id == id);
+            try
+            {
+                return await _dbContext.Books
+                            .Include(x => x.BookCategories)
+                            .ThenInclude(x => x.Category)
+                            .FirstOrDefaultAsync(x => x.Id == id);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+     
         }
 
-        public void Update(Book book)
+        public void Update(Book book, List<int> SelectedCategories)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _dbContext.Books.Update(book);
+
+                var oldData = _dbContext.BookCategories
+                                .Where(id => id.BookId == book.Id).ToList();
+
+                _dbContext.BookCategories.RemoveRange(oldData);
+
+                foreach (var bookCategory in SelectedCategories)
+                {
+                    _dbContext.BookCategories.Add(new BookCategory()
+                    {
+                        BookId = book.Id,
+                        CategoryId = bookCategory
+                    });
+
+                    _dbContext.SaveChanges();
+                }
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
         }
     }
 }

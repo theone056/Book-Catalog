@@ -34,7 +34,14 @@ namespace BookCatalog.Application.Services
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _bookRepository.Delete(id);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
         }
 
         public async Task<List<BookModelResult>> GetAllBook()
@@ -51,9 +58,17 @@ namespace BookCatalog.Application.Services
             return model;
         }
 
-        public void Update(Book book)
+        public void Update(UpdateBookModel book)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var model = _mapper.Map<Book>(book);
+                _bookRepository.Update(model, book.SelectedCategories);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

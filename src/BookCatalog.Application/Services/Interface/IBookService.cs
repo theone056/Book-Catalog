@@ -13,7 +13,7 @@ namespace BookCatalog.Application.Services.Interface
         Task<List<BookModelResult>> GetAllBook();
         Task<BookModelResult> GetBook(int id);
         void Create(CreateBookModel book); 
-        void Update(Book book);
+        void Update(UpdateBookModel book);
         void Delete(int id);
     }
 }

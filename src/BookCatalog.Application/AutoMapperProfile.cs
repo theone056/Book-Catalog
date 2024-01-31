@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace BookCatalog.Application
 {
-    public class AutoMapper : Profile
+    public class AutoMapperProfile : Profile
     {
-        public AutoMapper() {
+        public AutoMapperProfile() {
             CreateMap<Book, BookModelResult>()
                 .ForMember(dest => dest.Id, src => src.MapFrom(x => x.Id))
                 .ForMember(dest => dest.Title, src => src.MapFrom(x => x.Title))
@@ -24,7 +24,13 @@ namespace BookCatalog.Application
                 .ForMember(dest => dest.Description, src => src.MapFrom(x => x.Description))
                 .ForMember(dest => dest.PublishDate, src => src.MapFrom(x => x.PublishDate))
                 .ReverseMap();
-        
+
+            CreateMap<Book, UpdateBookModel>()
+                .ForMember(dest => dest.Id, src => src.MapFrom(x => x.Id))
+                .ForMember(dest => dest.Title, src => src.MapFrom(x => x.Title))
+                .ForMember(dest => dest.Description, src => src.MapFrom(x => x.Description))
+                .ForMember(dest => dest.PublishDate, src => src.MapFrom(x => x.PublishDate))
+                .ReverseMap();
         }
     }
 }

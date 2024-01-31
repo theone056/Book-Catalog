@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,18 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookCatalog.Domain.Entities
+namespace BookCatalog.Application.Models
 {
-    [Index(nameof(Title),nameof(PublishDate))]
-    public class Book
+    public class UpdateBookModel
     {
-        [Key]
         public int Id { get; set; }
-        [MaxLength(30)]
         public string Title { get; set; }
         public string? Description { get; set; }
         public DateTime PublishDate { get; set; }
-        public ICollection<BookCategory>? BookCategories { get; set; }
-
+        [NotMapped]
+        public List<int> SelectedCategories { get; set; }
     }
 }

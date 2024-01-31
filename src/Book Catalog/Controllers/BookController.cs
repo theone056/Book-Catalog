@@ -64,5 +64,29 @@ namespace Book_Catalog.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPut]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult Update(UpdateBookModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _bookService.Update(model);
+
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            _bookService.Delete(id);
+            return Ok();
+        }
     }
 }

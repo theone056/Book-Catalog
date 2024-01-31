@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "dgCN5ADP6CKtwJwjnUEJE2BApqjn6lxUMnFOvO1cmtPYDi7qBdVSQgBkiqSrjfohgDUQ3JdJ/dRzdLW63JTmjQ==",
+  "dgSpecHash": "nXTdWC/8C7WsL7RYP4ABWnGBZDN2V1hxgUWZF9a1k5sS492H0SuuoCT0GT/992ABLOZLoAhN4mXs1p+Nf1wGbw==",
   "success": true,
   "projectFilePath": "C:\\Users\\colon\\Documents\\Dev\\Book Catalog\\src\\BookCatalog.Core\\BookCatalog.Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\colon\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.1\\microsoft.entityframeworkcore.abstractions.8.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

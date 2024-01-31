@@ -12,7 +12,7 @@ namespace BookCatalog.Application.Interface
         Task<List<Book>> GetAllBook();
         Task<Book> GetBook(int id);
         void Create(Book book, List<int> SelectedCategories);
-        void Update(Book book);
+        void Update(Book book, List<int> SelectedCategories);
         void Delete(int id);
     }
 }

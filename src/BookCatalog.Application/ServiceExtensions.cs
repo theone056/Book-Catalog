@@ -11,7 +11,7 @@ namespace BookCatalog.Application
     {
         public static void ConfigureServices(this IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(AutoMapper));
+            services.AddAutoMapper(typeof(AutoMapperProfile));
         }
     }
 }
