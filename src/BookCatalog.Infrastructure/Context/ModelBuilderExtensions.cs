@@ -36,27 +36,27 @@ namespace BookCatalog.Infrastructure.Context
                 Name = "Horror"
             });
 
-            for(int bookid = 2; bookid <= 1000; bookid++)
-            {
-                var book = new Book()
-                {
-                    Id = bookid,
-                    Title = "Test Title " + bookid,
-                    Description = "Test Description "+ bookid,
-                    PublishDate = DateTime.Now,
-                };
+            //for(int bookid = 2; bookid <= 1000; bookid++)
+            //{
+            //    var book = new Book()
+            //    {
+            //        Id = bookid,
+            //        Title = "Test Title " + bookid,
+            //        Description = "Test Description "+ bookid,
+            //        PublishDate = DateTime.Now,
+            //    };
 
-                modelBuilder.Entity<Book>().HasData(book);
+            //    modelBuilder.Entity<Book>().HasData(book);
 
-                for(int categoryId=1; categoryId <= 4; categoryId++)
-                {
-                    modelBuilder.Entity<BookCategory>().HasData(new BookCategory()
-                    {
-                        BookId = book.Id,
-                        CategoryId = categoryId
-                    });
-                }
-            }
+            //    for(int categoryId=1; categoryId <= 4; categoryId++)
+            //    {
+            //        modelBuilder.Entity<BookCategory>().HasData(new BookCategory()
+            //        {
+            //            BookId = book.Id,
+            //            CategoryId = categoryId
+            //        });
+            //    }
+            //}
         }
     }
 }

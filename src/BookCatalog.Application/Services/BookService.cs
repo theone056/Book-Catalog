@@ -44,11 +44,10 @@ namespace BookCatalog.Application.Services
             }
         }
 
-        public async Task<List<BookModelResult>> GetAllBook()
+        public async Task<PagingResponseModel> GetAllBook(PagingRequestModel pagingRequestModel)
         {
-            var result = await _bookRepository.GetAllBook();
-            var model = _mapper.Map<List<BookModelResult>>(result);
-            return model;
+            var result = await _bookRepository.GetAllBook(pagingRequestModel);
+            return result;
         }
 
         public async Task<BookModelResult> GetBook(int id)

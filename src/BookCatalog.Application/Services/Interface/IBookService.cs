@@ -10,7 +10,7 @@ namespace BookCatalog.Application.Services.Interface
 {
     public interface IBookService
     {
-        Task<List<BookModelResult>> GetAllBook();
+        Task<PagingResponseModel> GetAllBook(PagingRequestModel pagingRequestModel);
         Task<BookModelResult> GetBook(int id);
         void Create(CreateBookModel book); 
         void Update(UpdateBookModel book);

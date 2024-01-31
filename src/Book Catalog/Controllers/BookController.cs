@@ -19,10 +19,10 @@ namespace Book_Catalog.Controllers
         [HttpGet("GetAllBook")]
         [ProducesResponseType(typeof(List<BookModelResult>), 200)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetAllBook()
+        public async Task<IActionResult> GetAllBook([FromQuery]PagingRequestModel pagingRequestModel)
         {
-            var result = await _bookService.GetAllBook();
-            if (!result.IsNullOrEmpty())
+            var result = await _bookService.GetAllBook(pagingRequestModel);
+            if (result.Books != null)
             {
                 return Ok(result);
             }
@@ -83,6 +83,7 @@ namespace Book_Catalog.Controllers
         }
 
         [HttpDelete]
+        [ProducesResponseType(200)]
         public IActionResult Delete(int id)
         {
             _bookService.Delete(id);
