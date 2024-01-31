@@ -363,3 +363,9 @@ MigrationBackup/
 FodyWeavers.xsd
 /.vs/
 /src/Book Catalog/.vs/
+/src/BookCatalog.Application/bin/
+/src/BookCatalog.Application/obj/
+/src/BookCatalog.Core/bin/
+/src/BookCatalog.Core/obj/
+/src/BookCatalog.Infrastructure/obj/
+/src/BookCatalog.Infrastructure/bin/

@@ -947,6 +947,9 @@
         }
       },
       "BookCatalog.Domain/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": "8.0.1"
+        },
         "runtime": {
           "BookCatalog.Domain.dll": {}
         }

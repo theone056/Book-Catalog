@@ -22,3 +22,4 @@ C:\Users\colon\Documents\Dev\Book Catalog\src\BookCatalog.Core\obj\Debug\net8.0\
 C:\Users\colon\Documents\Dev\Book Catalog\src\BookCatalog.Core\obj\Debug\net8.0\refint\BookCatalog.Domain.dll
 C:\Users\colon\Documents\Dev\Book Catalog\src\BookCatalog.Core\obj\Debug\net8.0\BookCatalog.Domain.pdb
 C:\Users\colon\Documents\Dev\Book Catalog\src\BookCatalog.Core\obj\Debug\net8.0\ref\BookCatalog.Domain.dll
+C:\Users\colon\Documents\Dev\Book Catalog\src\BookCatalog.Core\obj\Debug\net8.0\BookCatalog.Domain.csproj.AssemblyReference.cache
