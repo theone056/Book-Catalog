@@ -1,8 +1,18 @@
 using BookCatalog.Infrastructure;
 using BookCatalog.Infrastructure.Context;
 using BookCatalog.Application;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Serilog
+builder.Host.UseSerilog((HostBuilderContext context, IServiceProvider services, LoggerConfiguration loggerConfiguration) =>
+{
+    loggerConfiguration
+               .ReadFrom.Configuration(context.Configuration)
+               .ReadFrom.Services(services);
+});
+
 
 // Add services to the container.
 builder.Services.ConfigureServices();

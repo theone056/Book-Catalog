@@ -3,6 +3,7 @@ using BookCatalog.Application.Interface;
 using BookCatalog.Application.Models;
 using BookCatalog.Application.Services.Interface;
 using BookCatalog.Domain.Entities;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,14 @@ namespace BookCatalog.Application.Services
     public class BookService : IBookService
     {
         private readonly IBookRepository _bookRepository;
+        private readonly ILogger<BookService> _logger;
         private readonly IMapper _mapper;
-        public BookService(IBookRepository bookRepository, IMapper mapper)
+        public BookService(IBookRepository bookRepository,ILogger<BookService> logger, IMapper mapper)
         {
             _bookRepository = bookRepository;
+            _logger = logger;
             _mapper = mapper;
+            _logger.LogInformation("Called Book Service");
         }
         public void Create(CreateBookModel book)
         {
@@ -27,7 +31,8 @@ namespace BookCatalog.Application.Services
                 var model = _mapper.Map<Book>(book);
                 _bookRepository.Create(model, book.SelectedCategories);
             }
-            catch(Exception ex) { 
+            catch(Exception ex) {
+                _logger.LogError(ex, ex.Message);
                 throw new Exception(ex.Message);
             }
         }
@@ -40,6 +45,7 @@ namespace BookCatalog.Application.Services
             }
             catch(Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 throw new Exception(ex.Message, ex);
             }
         }
@@ -66,6 +72,7 @@ namespace BookCatalog.Application.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 throw new Exception(ex.Message);
             }
         }

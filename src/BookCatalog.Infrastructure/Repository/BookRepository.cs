@@ -6,6 +6,7 @@ using BookCatalog.Application.Services.Interface;
 using BookCatalog.Domain.Entities;
 using BookCatalog.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,12 @@ namespace BookCatalog.Infrastructure.Repository
     public class BookRepository : IBookRepository
     {
         private readonly BookCatalogDbContext _dbContext;
+        private readonly ILogger<BookRepository> _logger;
         private readonly IMapper _mapper;
-        public BookRepository(BookCatalogDbContext dbContext, IMapper mapper)
+        public BookRepository(BookCatalogDbContext dbContext,ILogger<BookRepository> logger, IMapper mapper)
         {
            _dbContext = dbContext;
+            _logger = logger;
             _mapper = mapper;
         }
 
@@ -35,6 +38,7 @@ namespace BookCatalog.Infrastructure.Repository
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 throw new Exception(ex.Message,ex);
             }
         }
@@ -94,6 +98,7 @@ namespace BookCatalog.Infrastructure.Repository
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 throw new Exception(ex.Message, ex);
             }
         }
@@ -109,6 +114,7 @@ namespace BookCatalog.Infrastructure.Repository
             }
             catch(Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 throw new Exception(ex.Message, ex);
             }
      
@@ -126,6 +132,7 @@ namespace BookCatalog.Infrastructure.Repository
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 throw new Exception(ex.Message, ex);
             }
         }
